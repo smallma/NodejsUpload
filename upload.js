@@ -3,7 +3,6 @@ var bodyParser = require('body-parser');
 var multer = require('multer');
 var mv=require('mv');
 
-
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(multer()); // for parsing multipart/form-data
@@ -17,9 +16,9 @@ app.post('/upload', function(req, res) {
             console.log(err);
             if (err){
                 res.send(500);
-            }else{
-                res.send(200);
+                return;
             }
+            res.send(200);
         });
 });
-app.listen(5544);
+app.listen(5566);
