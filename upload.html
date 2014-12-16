@@ -1,0 +1,34 @@
+<script type="text/javascript">
+
+function upload(fileURL) {
+    var uri = 'http://localhost:5544/upload';
+
+    function uploadSuccessCB(response) {
+        console.log('send file success');
+    }
+
+    function uploadFailedCB(error) {
+        console.log('send file failed, error: ' + error);
+    }
+
+    var options = new FileUploadOptions();
+    options.fileKey = "file";
+    options.mimeType = "image/png";
+    options.chunkedMode = false;
+    options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
+    
+    var headers = {
+        'headerParam':'headerValue',
+        'Content-Length': 6196
+    };
+
+    options.headers = headers;
+
+    var ft = new FileTransfer();
+    ft.upload(fileURL, uri, uploadSuccessCB, uploadFailedCB, options);
+}
+console.log('ok');
+upload('test/1.png');
+</script>
+
+12313
